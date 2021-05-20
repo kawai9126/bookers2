@@ -25,10 +25,7 @@ class UsersController < ApplicationController
        flash[:notice] = "You have uptated user successfully"
        redirect_to user_path(@user.id)
     else
-      @book = Book.new
-      @user = current_user
-      @users = User.all
-      render "index"
+      render "edit"
     end
 
   end
