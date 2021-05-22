@@ -10,24 +10,19 @@ class UsersController < ApplicationController
     book.save
     redirect_to book_path(book.id)
 
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    if @book.save
-      flash[:notice] = "Book was successfully created"
-    redirect_to book_path(@book.id)
-    else
-      @books = Book.all
-      @user = current_user
-      render "index"
-    end
+
   end
   def show
     @user = User.find(params[:id])
     @books = @user.books.all
+    @book = Book.new
 
   end
   def edit
      @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to user_path(current_user)
+    end
   end
 
   def update
