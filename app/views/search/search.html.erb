@@ -2,9 +2,25 @@
 <div class="container px-5 px-sm-0">
     <div class="row">
       <h1>
-        Books search for "<%= params[:book][:text] %>"
+        Books search for "<%= @text %>"
       </h1>
       <table class="table">
+        <% if @faculty == 'User' %>
+        <thead>
+            <tr>
+              <th>name</th>
+            </tr>
+        </thead>
+         <% @users.each do |user| %>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to user.name, user_path(user.id) %>
+              </td>
+            </tr>
+          </tbody>
+          <% end %>
+        <% else %>
         <thead>
             <tr>
               <th>Title</th>
@@ -22,6 +38,7 @@
               </td>
             </tr>
           </tbody>
+          <% end %>
         <% end %>
       </table>
     </div>
