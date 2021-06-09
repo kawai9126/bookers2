@@ -8,7 +8,9 @@ class SearchController < ApplicationController
   # end
 
   def search
-    @books = Book.search(params[:book][:search])
+    @books = Book.search(params[:book][:search],params[:book][:text])
+    
+
     #byebug
   end
 
