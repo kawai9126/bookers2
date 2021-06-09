@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'homes#top'
   devise_for :users
+  get 'search' => 'search#search'
   get 'home/about' => 'homes#about'
   get 'user/follow' => 'users#follow'
   get 'user/follower' => 'users#follower'

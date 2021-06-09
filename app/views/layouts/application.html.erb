@@ -57,11 +57,9 @@
       <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "flash ") %>
       <% end %>
-      <%= form_tag books_path, :method => 'get' do %>
-      <p>
-        <%= text_field_tag :search, params[:search] %>
-        <%= submit_tag "Search", :name => nil %>
-      </p>
+      <%= form_with model:@book,url: search_path, method: :get, local: true do |f| %>
+        <%= f.text_field :search, value: @search %>
+        <%= f.submit "検索" %>
       <% end %>
       <%= yield %>
     </main>
