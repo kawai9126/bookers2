@@ -8,8 +8,16 @@ class SearchController < ApplicationController
   # end
 
   def search
-    @books = Book.search(params[:book][:search],params[:book][:text])
-    
+    @books = Book.search(params[:search],params[:text])
+    @users = User.search(params[:user][:search],params[:user][:text])
+    @faculty = params[:faculty]
+  　search = params[:search]
+  　text = params[:text]
+    if @faculty == 'User'
+      @user = User.search(search,text)
+ 　　 else
+    　 @book = Book.search(search,text)
+    end
 
     #byebug
   end

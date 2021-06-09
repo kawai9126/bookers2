@@ -27,5 +27,19 @@ attachment :profile_image
 validates :name, uniqueness: true, length: { in: 2..20 }
 validates :introduction, length: { maximum: 50 }
 
+  def self.search(search,name)
+        if search == "forward_match"
+            @user = User.where("name like ?","#{name}%")
+        elsif search == "backward_match"
+            @user = User.where("name like ?","%#{name}")
+        elsif search == "perfect_match"
+            @user = User.where("name like ?","#{name}")
+        elsif search == "partial_match"
+            @user = User.where("name like ?","%#{name}%")
+        else
+            @user = User.all
+        end
+  end
+
 
 end
